@@ -9,9 +9,9 @@ dbConnect()
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json()
-        const { email, password } = reqBody
+        const { email, password } = reqBody;
 
-        console.log(reqBody)
+        console.log(reqBody);
 
         // check if user already exists
         const user = await User.findOne({email})
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
             httpOnly: true,
         })
 
-        return res
+        return res;
 
     } catch (err: any) {
         return NextResponse.json({ error: err.message },{ status: 500 })

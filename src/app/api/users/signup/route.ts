@@ -8,9 +8,9 @@ dbConnect()
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json()
-        const { username, email, password } = reqBody
+        const { username, email, password } = reqBody;
 
-        console.log(reqBody)
+        console.log(reqBody);
 
         // add validation
         // check if user already exists
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         })
 
         // save to MongoDB
-        const savedUser = await newUser.save()
+        const savedUser = await newUser.save();
         console.log(savedUser);
 
         return NextResponse.json({ 
