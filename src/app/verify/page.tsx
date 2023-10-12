@@ -33,7 +33,7 @@ export default function VerifyPage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             {verified && (
-                <div>
+                <div className="text-center">
                     <h1 className="text-4xl">Email Verified!</h1>
                     <p className="mt-4"><Link href="/login">Login</Link></p>
                 </div>
