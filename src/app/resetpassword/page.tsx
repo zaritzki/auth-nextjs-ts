@@ -46,7 +46,7 @@ export default function VerifyPage() {
 		if (token.length > 0) {
 			verifyUserEmail();
 		}
-	}, [token]);
+	}, [token, verifyUserEmail]);
 
 	useEffect(() => {
 		if ( 
