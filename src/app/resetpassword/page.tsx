@@ -18,16 +18,6 @@ export default function VerifyPage() {
 	const [token, setToken] = React.useState('');
 	const [validToken, setValidToken] = React.useState(false);
 
-	const verifyUserEmail = async () => {
-		try {
-			await axios.post('/api/users/verify/reset', {token});
-			setValidToken(true);
-		} catch (err:any) {
-			setError(true);
-			console.log(err.message);
-		}
-	}
-
 	const handleResetPassword = async () => {
 		try {
 			await axios.post('/api/users/resetpassword', {user});
@@ -43,10 +33,20 @@ export default function VerifyPage() {
 	}, []);
 
 	useEffect(() => {
+		const verifyUserEmail = async () => {
+			try {
+				await axios.post('/api/users/verify/reset', {token});
+				setValidToken(true);
+			} catch (err:any) {
+				setError(true);
+				console.log(err.message);
+			}
+		}
+
 		if (token.length > 0) {
 			verifyUserEmail();
 		}
-	}, [token, verifyUserEmail]);
+	}, [token]);
 
 	useEffect(() => {
 		if ( 
