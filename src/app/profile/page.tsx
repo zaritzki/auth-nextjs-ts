@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import axios from "axios"
@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast"
 
 export default function ProfilePage() {
 	const router = useRouter()
-	const [data, setData] = React.useState("");
+	const [data, setData] = React.useState("")
 
 	const handleLogout = async () => {
 		try {
@@ -22,9 +22,9 @@ export default function ProfilePage() {
 	}
 
 	const getUserDetails = async () => {
-		const res = await axios.get('/api/users/profile');
-		console.log(res.data);
-		setData(res.data.data._id);
+		const res = await axios.get('/api/users/profile')
+		console.log(res.data)
+		setData(res.data.data._id)
 	}
 
 	return (
