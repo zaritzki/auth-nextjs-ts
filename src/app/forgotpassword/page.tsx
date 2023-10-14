@@ -59,7 +59,7 @@ export default function LoginPage() {
 				<button
 					className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
 					onClick={handleLogin}
-                    disabled={buttonDisabled}
+					disabled={buttonDisabled}
 				>
 					Send Email
 				</button>
