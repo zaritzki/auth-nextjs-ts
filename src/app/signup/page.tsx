@@ -85,7 +85,7 @@ export default function SignupPage() {
 			>
 				{buttonDisabled ? "Complete the form": "Sign-Up Now"}
 			</button>
-			Already have an account? <Link href="/login">Login here</Link>
+			<p className="mt-5">Already have an account? <Link href="/login">Login here</Link></p>
 		</div>
 	);
 }

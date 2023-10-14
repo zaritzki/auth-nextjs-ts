@@ -11,8 +11,8 @@ export async function POST(request: NextRequest) {
         console.log(token);
 
         const user = await User.findOne({
-            verifyToken: token,
-            verifyTokenExpiry: {$gt: Date.now()},
+            forgotPasswordToken: token,
+            forgotPasswordTokenExpiry: {$gt: Date.now()},
         })
         console.log(user);
 
@@ -24,17 +24,6 @@ export async function POST(request: NextRequest) {
                 status: 400
             })
         }
-
-        user.isVerified = true;
-        user.verifyToken = undefined;
-        user.verifyTokenExpiry = undefined;
-
-        await user.save();
-
-        return NextResponse.json({
-            message: "Email verified successfully",
-            success: true
-        })
 
     } catch (err:any) {
         return NextResponse.json({error: err.message}, {status: 500})

@@ -10,7 +10,7 @@ export async function dbConnect() {
         });
 
         connection.on("error", (err) => {
-            console.log("MongoDB conenction failed. Please make sure MongoDB is running." + err);
+            console.log("MongoDB conenction failed. Please make sure MongoDB is running - " + err);
             process.exit();
         });
     } catch (err) {

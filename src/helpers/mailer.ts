@@ -30,15 +30,40 @@ export const sendEmail = async ({ email, emailType, userId }:any) => {
 			}
 		});
 
+		let emailSubject = "";
+		let htmlBody = "";
+		switch(emailType) {
+			case 'VERIFY':
+				emailSubject = "Verify your email";
+				htmlBody = `
+					<p>Click <a href="${process.env.DOMAIN_URL}/VERIFY?token=${hashedToken}">here</a> to Verify your email or copy and paste the link below:</p>
+					<p>${process.env.DOMAIN_URL}/VERIFY?token=${hashedToken}</p>
+				`;
+				break;
+			case 'RESET':
+				emailSubject = "Reset your password";
+				htmlBody = `
+					<p>Click <a href="${process.env.DOMAIN_URL}/resetpassword?token=${hashedToken}">here</a> to Reset your password or copy and paste the link below:</p>
+					<p>${process.env.DOMAIN_URL}/resetpassword?token=${hashedToken}</p>
+				`;
+				break;
+			case 'CHANGE':
+				emailSubject = "Password Changed";
+				htmlBody = `
+					<p>Your accound has been changed!</p>
+					<p>Click <a href="${process.env.DOMAIN_URL}/login">here</a> to login.</p>
+				`;
+				break;
+			default:
+			  	// code block
+		}
+
 		// setup the email options
 		const mailOptions = {
 			from: 'dotzar@gmail.com',
 			to: email,
-			subject: emailType === 'VERIFY' ? "Verify your email" : "Reset your password",
-			html: `
-				<p>Click <a href="${process.env.DOMAIN_URL}/verify?token=${hashedToken}">here</a> to ${emailType === 'VERIFY' ? "Verify your email" : "Reset your password"} or copy and paste the link below:</p>
-				<p>${process.env.DOMAIN_URL}/verify?token=${hashedToken}</p>
-			`
+			subject: emailSubject,
+			html: htmlBody,
 		}
 
 		// send the email
